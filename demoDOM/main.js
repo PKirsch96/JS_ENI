@@ -1,112 +1,70 @@
+
+
 const monCanvas = document.getElementById("monCanvas");
 const btnHaut = document.getElementById("btnHaut");
-const btnBas = document.getElementById("btnBas");
 const btnDroite = document.getElementById("btnDroite");
+const btnBas = document.getElementById("btnBas");
 const btnGauche = document.getElementById("btnGauche");
 
-btnHaut.addEventListener("click", move);
-btnBas.addEventListener("click", move);
-btnDroite.addEventListener("click", move);
-btnGauche.addEventListener("click", move);
+btnHaut.addEventListener("click", moveBtn);
+btnDroite.addEventListener("click", moveBtn);
+btnBas.addEventListener("click", moveBtn);
+btnGauche.addEventListener("click", moveBtn);
 
-document.addEventListener("keypress", moveBtn)
+document.addEventListener("keydown", moveByKeyPress)
 
-monCanvas.width = 1720;
-monCanvas.height = 880;
-
-const pas = 10;
-
-function move(evt) {
-    ctx.clearRect(oldX, oldY, 32, 32);
-    switch (evt.target.id) {
-        case "btnHaut" :
-            oldY -= pas;
-            break;
-        case "btnBas" :
-            oldY += pas;
-            break;
-        case "btnDroite" :
-            oldX += pas;
-            break;
-        case "btnGauche" :
-            oldX -= pas;
-            break;
+//fonction appelée lors d'un click sur un des boutons
+function moveBtn(evt){
+    //console.dir(evt);
+    let direction;
+    switch(evt.target.id){
+        case 'btnHaut': direction='haut'; break;
+        case 'btnDroite': direction='droite'; break;
+        case 'btnBas': direction='bas'; break;
+        case 'btnGauche': direction='gauche'; break;
     }
-    ctx.drawImage(vaisseau, oldX, oldY);
+
+    move(direction);
+}
+//Fonction appelée lors de la pression d'une touche
+function moveByKeyPress(evt){
+    let direction;
+    switch(evt.key){
+        case 'ArrowUp':direction='haut'; break;
+        case 'ArrowRight':direction='droite'; break;
+        case 'ArrowDown':direction='bas'; break;
+        case 'ArrowLeft':direction='gauche'; break;
+    }
+    move(direction);
 }
 
-function moveBtn(e) {
-    if (e.key === 'ArrowUp') {
-        move("btnHaut")
+function move(direction){
+    //console.dir(evt);
+    ctx.clearRect(x, y , 32, 32);
+    switch(direction){
+        case 'haut': y-=pas; break;
+        case 'droite': x+=pas; break;
+        case 'bas': y+=pas; break;
+        case 'gauche': x-=pas; break;
     }
-    else if (e.key === 'ArrowDown') {
-        move("btnBas")
-    }
-    else if (e.key === 'ArrowLeft') {
-        move("btnGauche")
-    }
-    else if (e.key === 'ArrowRight') {
-        move("btnDroite")
-    }
+
+    ctx.drawImage(vaisseau, x, y);
 }
 
+
+monCanvas.width = 500;
+monCanvas.height = 500;
 
 const ctx = monCanvas.getContext('2d');
 
-let oldX = monCanvas.width / 2 - 16;
-let oldY = monCanvas.height / 2 - 16;
-
-let vaisseau = new Image(32, 32)
-vaisseau.src = "images/spaceship32x32.png"
-vaisseau.onload = () => {
-    ctx.drawImage(vaisseau, oldX, oldY)
-};
+let x = monCanvas.width/2 - 16;
+let y = monCanvas.height/2 - 16;
+const pas = 10;
 
 
-// let bouger = (move) => {
-//     ctx.clearRect(oldX,oldY,32,32);
-//     switch (move){
-//         case 0:
-//             oldX += 32
-//             ctx.drawImage(vaisseau,oldX,oldY);
-//             break;
-//         case 1:
-//             oldX -= 32
-//             ctx.drawImage(vaisseau,oldX,oldY);
-//             break;
-//         case 2:
-//             oldY -= 32
-//             ctx.drawImage(vaisseau,oldX,oldY);
-//             break;
-//         case 3:
-//             oldY += 32
-//             ctx.drawImage(vaisseau,oldX,oldY);
-//             break;
-//     }
-//
-// }
-// let droite = () => {
-//     bouger(0)
-// }
-// let gauche = () => {
-//     bouger(1)
-// }
-// let haut = () => {
-//     bouger(2)
-// }
-// let bas = () => {
-//     bouger(3)
-// }
-//
-
-
-
-// const listenerActions = [haut, droite, gauche, bas]
-// let boutoninput = document.getElementsByClassName("btn");
-// for(let i = 0; i < listenerActions.length; i++){
-//     boutoninput[i].addEventListener('click', listenerActions[i]);
-// }
-
+let vaisseau = new Image(32, 32);
+vaisseau.src = "./images/spaceship32x32.png";
+vaisseau.onload = ()=>ctx.drawImage(vaisseau, x, y);
 
 
 
