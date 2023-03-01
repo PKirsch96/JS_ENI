@@ -52,8 +52,8 @@ function move(direction){
 }
 
 
-monCanvas.width = 500;
-monCanvas.height = 500;
+monCanvas.width = 1720;
+monCanvas.height = 880;
 
 const ctx = monCanvas.getContext('2d');
 
