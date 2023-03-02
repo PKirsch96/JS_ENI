@@ -37,9 +37,10 @@ let combat = (adversaire1 , adversaire2) =>{
     while(adversaire1.pdv > 0 && adversaire2.pdv > 0){
         adversaire1.attack(adversaire2)
         adversaire2.attack(adversaire1)
+        pikachu.afficher()
+        evoli.afficher()
     }
-    pikachu.afficher()
-    evoli.afficher()
+
 }
 
 
