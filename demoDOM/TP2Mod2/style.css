@@ -1,15 +1,27 @@
 
-
+html{
+    background-image: url("or.avif");
+    background-repeat: no-repeat;
+}
 #form{
     width: 200px;
     display: flex;
     flex-direction: column;
     justify-self: center;
     border-radius: 10px;
-    background: linear-gradient(145deg, #f0f0f0, #cacaca);
+    border: none;
+    background: linear-gradient(145deg, #f0f0f0, #fafafa);
     box-shadow:  20px 20px 60px #bebebe,
     -20px -20px 60px #ffffff;
 }
+#btn{
+    border: 1px solid #e7e7e7;
+    border-radius: 10px;
+    background: #ffffff;
+    box-shadow: inset 20px 20px 60px #dadada,
+    inset -20px -20px 60px #ffffff;
+}
+
 #reponse{
     display: flex;
     justify-content: center;
@@ -21,8 +33,9 @@
     font-size: 2em;
     padding-left: 10px;
     padding-right: 10px;
-    background-color: aquamarine;
+    background: none;
     border-radius: 10px;
+    font-family: Georgia, serif;
 }
 
 .parent {
