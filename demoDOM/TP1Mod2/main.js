@@ -19,6 +19,4 @@ function showOnlisteAPuces(){
         event.currentTarget.remove();}
     })
 }
-
-
-fetch()
+ 
